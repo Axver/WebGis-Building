@@ -340,6 +340,16 @@ include 'proses/pendidikan.php';
                                 else{
                                     marker_user=undefined;
                                 }
+
+                                if(circle_radius==undefined)
+                                {
+
+                                }
+                                else
+                                {
+                                    circle_radius.setMap(null);
+                                    circle_radius=undefined;  
+                                }
                                 
                                
                             }
@@ -348,6 +358,7 @@ include 'proses/pendidikan.php';
 
                             function data_radius(lat,lng,value)
                             {
+                                marker_user.setMap(null);
                                 
                                 hapus();
 
