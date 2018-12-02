@@ -661,6 +661,19 @@ include 'proses/pendidikan.php';
                         
                         
                     }
+
+
+                    function cari_penghuni()
+                    {
+                        hapus();
+                        nama=document.getElementById("cari_penghuni").value;
+                        console.log(nama);
+
+                            layernya = new google.maps.Data();
+                            layernya.loadGeoJson('proses/cari_penghuni.php?nama='+nama);
+               
+                            layernya.setMap(map);
+                    }
                     
                     </script>
 
