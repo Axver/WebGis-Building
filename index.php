@@ -148,14 +148,25 @@ include 'proses/pendidikan.php';
 
                 <div class='col-sm-6'>
 
-                   <script>
-                    function cari_id() {
+                    <script>
+                        function cari_id() {
                             hapus();
                             nama = document.getElementById("cari_id").value;
                             console.log(nama);
 
                             layernya = new google.maps.Data();
                             layernya.loadGeoJson('proses/cari_id.php?nama=' + nama);
+
+                            layernya.setMap(map);
+                        }
+
+                        function cari_pendapatan() {
+                            hapus();
+                            nama = document.getElementById("cari_pendapatan").value;
+                            console.log(nama);
+
+                            layernya = new google.maps.Data();
+                            layernya.loadGeoJson('proses/cari_pendapatan.php?nama=' + nama);
 
                             layernya.setMap(map);
                         }
@@ -698,8 +709,6 @@ include 'proses/pendidikan.php';
 
                             layernya.setMap(map);
                         }
-
-                       
                     </script>
 
 
