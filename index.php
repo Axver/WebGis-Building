@@ -411,6 +411,34 @@ include 'proses/pendidikan.php';
                         layernya.setMap(map);
 
                             }
+
+
+                            // Data Radius make_circle_b_berisi
+                            function data_radius_berisi(lat,lng,value)
+                            {
+                                marker_user.setMap(null);
+
+                                hapus();
+
+                                var test1 = new Array();
+                                $.ajax({
+                                url: 'proses/get_radius_berisi.php',
+                                data: "",
+                                dataType: 'json',
+                                  success: function (rows) {
+                                      alert(rows);
+
+                                  }
+
+
+                               });
+
+                        layernya = new google.maps.Data();
+                        layernya.loadGeoJson('proses/get_radius_industri.php?lng='+lng+'&lat='+lat+'&radius='+value);
+
+                        layernya.setMap(map);
+
+                            }
                             function make_circle()
                             {
                                 if(circle_radius==undefined)
@@ -511,6 +539,58 @@ include 'proses/pendidikan.php';
                                     data_radius_industri(lat,lng,value);
                                 }
                             }
+
+
+                            // Make Circle Rumah rumah_berisi
+
+                              function make_circle_b_berisi()
+                            {
+                                if(circle_radius==undefined)
+                                {
+
+                                var value=parseInt(document.getElementById("range_rumah_berisi").value);
+                                // console.log(value);
+                                var lat = marker_user.getPosition().lat();
+                                var lng = marker_user.getPosition().lng();
+                                var position=marker_user.getPosition();
+                                // console.log(lat);
+                                // console.log(lng);
+                                circle_radius = new google.maps.Circle({
+                                     strokeColor: '#FF0000',
+                                     strokeOpacity: 0.8,
+                                     strokeWeight: 2,
+                                     fillColor: '#FF0000',
+                                     fillOpacity: 0.35,
+                                     map: map,
+                                     center: position,
+                                     radius: value
+                                    });
+                                    data_radius_berisi(lat,lng,value);
+                                }
+                                else
+                                {
+                                    circle_radius.setMap(null);
+                                    circle_radius=undefined;
+                                    var value=parseInt(document.getElementById("range_rumah_berisi").value);
+                                console.log(value);
+                                var lat = marker_user.getPosition().lat();
+                                var lng = marker_user.getPosition().lng();
+                                var position=marker_user.getPosition();
+                                // console.log(lat);
+                                // console.log(lng);
+                                circle_radius = new google.maps.Circle({
+                                     strokeColor: '#FF0000',
+                                     strokeOpacity: 0.8,
+                                     strokeWeight: 2,
+                                     fillColor: '#FF0000',
+                                     fillOpacity: 0.35,
+                                     map: map,
+                                     center: position,
+                                     radius: value
+                                    });
+                                    data_radius_berisi(lat,lng,value);
+                                }
+                            }
                         </script>
 
                         <button class="fa fa-location-arrow" onclick="click_marker()"> </button>
@@ -528,10 +608,12 @@ include 'proses/pendidikan.php';
                     </div>
 
                     <div class='panel-body' style='height:200px; width:200px;background-color:#66ffa6;'>
-                        <b> Radius Bangunan All:</b>
+                        <b> Radius Semua Bangunan:</b>
                         <input id="range" onchange="make_circle()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
                         <b> Radius Bangunan Industri:</b>
                         <input id="range_industri" onchange="make_circle_industri()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
+                        <b> Radius Rumah Berisi:</b>
+                        <input id="range_rumah_berisi" onchange="make_circle_b_berisi()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
                     </div>
 
 
