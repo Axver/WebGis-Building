@@ -41,7 +41,7 @@ include 'proses/pendidikan.php';
     -webkit-appearance: none;
     width: 100%;
     height: 15px;
-    border-radius: 5px;   
+    border-radius: 5px;
     background: black;
     outline: none;
     opacity: 0.7;
@@ -54,7 +54,7 @@ include 'proses/pendidikan.php';
     appearance: none;
     width: 25px;
     height: 25px;
-    border-radius: 50%; 
+    border-radius: 50%;
     background: #4CAF50;
     cursor: pointer;
 }
@@ -348,10 +348,10 @@ include 'proses/pendidikan.php';
                                 else
                                 {
                                     circle_radius.setMap(null);
-                                    circle_radius=undefined;  
+                                    circle_radius=undefined;
                                 }
-                                
-                               
+
+
                             }
 
                             var circle_radius;
@@ -359,7 +359,7 @@ include 'proses/pendidikan.php';
                             function data_radius(lat,lng,value)
                             {
                                 marker_user.setMap(null);
-                                
+
                                 hapus();
 
                                 var test1 = new Array();
@@ -371,13 +371,43 @@ include 'proses/pendidikan.php';
                                       alert(rows);
 
                                   }
-           
 
-                       });
+
+                               });
 
                         layernya = new google.maps.Data();
                         layernya.loadGeoJson('proses/get_radius.php?lng='+lng+'&lat='+lat+'&radius='+value);
-                
+
+                        layernya.setMap(map);
+
+                            }
+
+
+                            // Fungsi Data Radius Industri
+
+                            
+                            function data_radius_industri(lat,lng,value)
+                            {
+                                marker_user.setMap(null);
+
+                                hapus();
+
+                                var test1 = new Array();
+                                $.ajax({
+                                url: 'proses/get_radius_industri.php',
+                                data: "",
+                                dataType: 'json',
+                                  success: function (rows) {
+                                      alert(rows);
+
+                                  }
+
+
+                               });
+
+                        layernya = new google.maps.Data();
+                        layernya.loadGeoJson('proses/get_radius_industri.php?lng='+lng+'&lat='+lat+'&radius='+value);
+
                         layernya.setMap(map);
 
                             }
@@ -385,14 +415,14 @@ include 'proses/pendidikan.php';
                             {
                                 if(circle_radius==undefined)
                                 {
-                                    
+
                                 var value=parseInt(document.getElementById("range").value);
-                                console.log(value);
+                                // console.log(value);
                                 var lat = marker_user.getPosition().lat();
                                 var lng = marker_user.getPosition().lng();
                                 var position=marker_user.getPosition();
-                                console.log(lat);
-                                console.log(lng);
+                                // console.log(lat);
+                                // console.log(lng);
                                 circle_radius = new google.maps.Circle({
                                      strokeColor: '#FF0000',
                                      strokeOpacity: 0.8,
@@ -406,16 +436,16 @@ include 'proses/pendidikan.php';
                                     data_radius(lat,lng,value);
                                 }
                                 else
-                                {  
+                                {
                                     circle_radius.setMap(null);
-                                    circle_radius=undefined;  
+                                    circle_radius=undefined;
                                     var value=parseInt(document.getElementById("range").value);
                                 console.log(value);
                                 var lat = marker_user.getPosition().lat();
                                 var lng = marker_user.getPosition().lng();
                                 var position=marker_user.getPosition();
-                                console.log(lat);
-                                console.log(lng);
+                                // console.log(lat);
+                                // console.log(lng);
                                 circle_radius = new google.maps.Circle({
                                      strokeColor: '#FF0000',
                                      strokeOpacity: 0.8,
@@ -425,8 +455,60 @@ include 'proses/pendidikan.php';
                                      map: map,
                                      center: position,
                                      radius: value
-                                    }); 
+                                    });
                                     data_radius(lat,lng,value);
+                                }
+                            }
+
+
+                            // Make Circle Industri
+
+                                  function make_circle_industri()
+                            {
+                                if(circle_radius==undefined)
+                                {
+
+                                var value=parseInt(document.getElementById("range_industri").value);
+                                // console.log(value);
+                                var lat = marker_user.getPosition().lat();
+                                var lng = marker_user.getPosition().lng();
+                                var position=marker_user.getPosition();
+                                // console.log(lat);
+                                // console.log(lng);
+                                circle_radius = new google.maps.Circle({
+                                     strokeColor: '#FF0000',
+                                     strokeOpacity: 0.8,
+                                     strokeWeight: 2,
+                                     fillColor: '#FF0000',
+                                     fillOpacity: 0.35,
+                                     map: map,
+                                     center: position,
+                                     radius: value
+                                    });
+                                    data_radius_industri(lat,lng,value);
+                                }
+                                else
+                                {
+                                    circle_radius.setMap(null);
+                                    circle_radius=undefined;
+                                    var value=parseInt(document.getElementById("range_industri").value);
+                                console.log(value);
+                                var lat = marker_user.getPosition().lat();
+                                var lng = marker_user.getPosition().lng();
+                                var position=marker_user.getPosition();
+                                // console.log(lat);
+                                // console.log(lng);
+                                circle_radius = new google.maps.Circle({
+                                     strokeColor: '#FF0000',
+                                     strokeOpacity: 0.8,
+                                     strokeWeight: 2,
+                                     fillColor: '#FF0000',
+                                     fillOpacity: 0.35,
+                                     map: map,
+                                     center: position,
+                                     radius: value
+                                    });
+                                    data_radius_industri(lat,lng,value);
                                 }
                             }
                         </script>
@@ -446,9 +528,10 @@ include 'proses/pendidikan.php';
                     </div>
 
                     <div class='panel-body' style='height:200px; width:200px;background-color:#66ffa6;'>
-                        <b> Radius Bangunan:</b>
+                        <b> Radius Bangunan All:</b>
                         <input id="range" onchange="make_circle()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
-
+                        <b> Radius Bangunan Industri:</b>
+                        <input id="range_industri" onchange="make_circle_industri()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
                     </div>
 
 
