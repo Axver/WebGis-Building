@@ -763,7 +763,9 @@ include 'proses/pendidikan.php';
   
 
 
-                swal("<b>"+myHTML+"</b>");
+                swal('Pemilik',
+                "Id:"+myHTML+"<br/>"+
+                "Nama Pemilik:"+nama_pemilik);
                 
 
                  });  
