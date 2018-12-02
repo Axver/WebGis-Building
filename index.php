@@ -139,22 +139,22 @@ include 'proses/pendidikan.php';
                         </div>
                     </div>
 
-                    
 
 
-                        
+
+
 
                 </div>
 
                 <div class='col-sm-6'>
-                
+
                     <input id="cari_id" type="text" name="nama">
-                          <button onclick="cari_id()">Cari ID</button>
+                    <button onclick="cari_id()">Cari ID</button>
 
 
                     <input id="cari_pendapatan" type="text" name="nama">
-                          <button onclick="cari_pendapatan()">Pendapatan</button>
-                    
+                    <button onclick="cari_pendapatan()">Pendapatan</button>
+
                 </div>
 
             </div>
@@ -333,7 +333,7 @@ include 'proses/pendidikan.php';
                         </select>
 
                         <script>
-                        var marker_user;
+                            var marker_user;
                             function click_marker() {
                                 if(marker_user==undefined)
                                 {
@@ -622,59 +622,69 @@ include 'proses/pendidikan.php';
 
                     <div class='panel-body' style='width:200px;background-color:#66ffa6;'>
                         <b> Radius Semua Bangunan:</b>
-                        <input id="range" onchange="make_circle()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
+                        <input id="range" onchange="make_circle()" type="range" min="1" max="1000" value="1" class="slider"
+                            id="myRange">
                         <b> Radius Bangunan Industri:</b>
-                        <input id="range_industri" onchange="make_circle_industri()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
+                        <input id="range_industri" onchange="make_circle_industri()" type="range" min="1" max="1000"
+                            value="1" class="slider" id="myRange">
                         <b> Radius Rumah Berisi:</b>
-                        <input id="range_rumah_berisi" onchange="make_circle_b_berisi()" type="range" min="1" max="1000" value="1" class="slider" id="myRange">
-                       <b style='color:red;'>Pencarian Pemilik</b>
+                        <input id="range_rumah_berisi" onchange="make_circle_b_berisi()" type="range" min="1" max="1000"
+                            value="1" class="slider" id="myRange">
+                        <b style='color:red;'>Pencarian Pemilik</b>
 
-                       <input id="cari_pemilik" type="text" name="nama">
-                       <button onclick="cari_pemilik()">Cari</button>
+                        <input id="cari_pemilik" type="text" name="nama">
+                        <button onclick="cari_pemilik()">Cari</button>
 
-                         <br/>
-                          <b style='color:red;'>Pencarian Penghuni</b>
+                        <br />
+                        <b style='color:red;'>Pencarian Penghuni</b>
 
-                          <input id="cari_penghuni" type="text" name="nama">
-                          <button onclick="cari_penghuni()">Cari</button>
+                        <input id="cari_penghuni" type="text" name="nama">
+                        <button onclick="cari_penghuni()">Cari</button>
 
-                          <br/>
-                          <b style='color:red;'>Cari Nama Industri</b>
+                        <br />
+                        <b style='color:red;'>Cari Nama Industri</b>
 
-                          <input id="cari_industri" type="text" name="nama">
-                          <button onclick="cari_industri()">Cari</button>
-                    
+                        <input id="cari_industri" type="text" name="nama">
+                        <button onclick="cari_industri()">Cari</button>
+
                     </div>
 
                     <script>
-                    
-                    function cari_pemilik()
-                    {
-                        hapus();
-                        nama=document.getElementById("cari_pemilik").value;
-                        console.log(nama);
+                        function cari_pemilik() {
+                            hapus();
+                            nama = document.getElementById("cari_pemilik").value;
+                            console.log(nama);
 
                             layernya = new google.maps.Data();
-                            layernya.loadGeoJson('proses/cari_pemilik.php?nama='+nama);
-               
+                            layernya.loadGeoJson('proses/cari_pemilik.php?nama=' + nama);
+
                             layernya.setMap(map);
-                        
-                        
-                    }
 
 
-                    function cari_penghuni()
-                    {
-                        hapus();
-                        nama=document.getElementById("cari_penghuni").value;
-                        console.log(nama);
+                        }
+
+
+                        function cari_penghuni() {
+                            hapus();
+                            nama = document.getElementById("cari_penghuni").value;
+                            console.log(nama);
 
                             layernya = new google.maps.Data();
-                            layernya.loadGeoJson('proses/cari_penghuni.php?nama='+nama);
-               
+                            layernya.loadGeoJson('proses/cari_penghuni.php?nama=' + nama);
+
                             layernya.setMap(map);
-                    }
-                    
+                        }
+
+                        function cari_industri() {
+                            hapus();
+                            nama = document.getElementById("cari_industri").value;
+                            console.log(nama);
+
+                            layernya = new google.maps.Data();
+                            layernya.loadGeoJson('proses/cari_industri.php?nama=' + nama);
+
+                            layernya.setMap(map);
+                        }
                     </script>
 
 
