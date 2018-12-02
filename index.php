@@ -750,6 +750,11 @@ include 'proses/pendidikan.php';
                 results = layernya.loadGeoJson('proses/bangunan.php');
                 layernya.setMap(map);
 
+                layernya.addListener('click', function(event) {
+                var myHTML = event.feature.getProperty("id_pemilik_b");
+                console.log(myHTML);
+                 });  
+
             }
 
 
