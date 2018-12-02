@@ -650,8 +650,15 @@ include 'proses/pendidikan.php';
                     
                     function cari_pemilik()
                     {
+                        hapus();
                         nama=document.getElementById("cari_pemilik").value;
                         console.log(nama);
+
+                            layernya = new google.maps.Data();
+                            layernya.loadGeoJson('proses/cari_pemilik.php?nama='+nama);
+               
+                            layernya.setMap(map);
+                        
                         
                     }
                     
@@ -884,20 +891,7 @@ include 'proses/pendidikan.php';
                             layernya1[i] = map.data.addGeoJson(test1[i]);
 
 
-
-
-
-
                         }
-
-
-
-
-
-
-
-
-
 
                     }
 
