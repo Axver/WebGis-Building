@@ -19,7 +19,7 @@ include 'proses/pendidikan.php';
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <style>
         #map {
         height: 600px;
@@ -743,7 +743,10 @@ include 'proses/pendidikan.php';
 
 
 
+
             function loadLayer() {
+
+                var infowindow = new google.maps.InfoWindow();
 
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/bangunan.php');
@@ -751,8 +754,18 @@ include 'proses/pendidikan.php';
                 layernya.setMap(map);
 
                 layernya.addListener('click', function(event) {
+        
                 var myHTML = event.feature.getProperty("id_pemilik_b");
+                var nama_pemilik=event.feature.getProperty("nama_penduduk");
                 console.log(myHTML);
+
+  
+
+
+ swal(
+    myHTML);
+                
+
                  });  
 
             }

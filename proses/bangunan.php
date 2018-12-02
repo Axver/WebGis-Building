@@ -1,6 +1,6 @@
 <?php
 include("connect.php");
-$sql = "select ST_asgeojson(geom) AS geometry,ST_X(ST_centroid(geom)) as x,ST_Y(ST_Centroid(geom)) as y, gid_bangunan,air_pam,bangunan.id_pemilik_b FROM bangunan
+$sql = "select penduduk.nama as nama_penduduk, ST_asgeojson(geom) AS geometry,ST_X(ST_centroid(geom)) as x,ST_Y(ST_Centroid(geom)) as y,St_AsGEoJSON(ST_Centroid(geom)) as center, gid_bangunan,air_pam,bangunan.id_pemilik_b FROM bangunan
 INNER JOIN pemilik_bangunan ON bangunan.id_pemilik_b=pemilik_bangunan.id_pemilik_b INNER JOIN penghuni_bangunan ON bangunan.id_penghuni_b=penghuni_bangunan.id_penghuni_b
 INNER JOIN penduduk ON penduduk.id_penduduk=pemilik_bangunan.id_penduduk 
 INNER JOIN datuk ON penduduk.id_datuk=datuk.id_datuk
@@ -15,12 +15,15 @@ while ($isinya = pg_fetch_assoc($result)) {
 	$features = array(
 		'type' => 'Feature',
 		'geometry' => json_decode($isinya['geometry']),
+		'geometry_point'=>json_decode($isinya['center']),
 		'properties' => array(
 			'gid_bangunan' => $isinya['gid_bangunan'],
 			'air_pam' => $isinya['air_pam'],
             'id_pemilik_b' => $isinya['id_pemilik_b'],
             'x' => $isinya['x'],
-            'y' => $isinya['y']
+			'y' => $isinya['y'],
+			'center'=>$isinya['center'],
+			'nama_penduduk'=>$isinya['nama_penduduk']
 			)
 		);
 	array_push($hasil['features'], $features);
