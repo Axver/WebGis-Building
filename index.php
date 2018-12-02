@@ -148,6 +148,19 @@ include 'proses/pendidikan.php';
 
                 <div class='col-sm-6'>
 
+                   <script>
+                    function cari_id() {
+                            hapus();
+                            nama = document.getElementById("cari_id").value;
+                            console.log(nama);
+
+                            layernya = new google.maps.Data();
+                            layernya.loadGeoJson('proses/cari_id.php?nama=' + nama);
+
+                            layernya.setMap(map);
+                        }
+                   </script>
+
                     <input id="cari_id" type="text" name="nama">
                     <button onclick="cari_id()">Cari ID</button>
 
@@ -685,6 +698,8 @@ include 'proses/pendidikan.php';
 
                             layernya.setMap(map);
                         }
+
+                       
                     </script>
 
 
