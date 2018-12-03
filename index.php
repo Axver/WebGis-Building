@@ -20,9 +20,9 @@ include 'proses/pendidikan.php';
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.css">
     <style>
-    table{
+        table{
         border:2px solid black;
     }
 
@@ -527,6 +527,10 @@ include 'proses/pendidikan.php';
         var air_pam=event.feature.getProperty("air_pam");
         var kapasitas_listrik=event.feature.getProperty("kapasitas_listrik");
         var pbb=event.feature.getProperty("pbb");
+        var jenis_kelas=event.feature.getProperty("jenis_kelas");
+        var nama_jenis_industri=event.feature.getProperty("nama_jenis_industri");
+        var nama_industri=event.feature.getProperty("nama_industri");
+        var pendapatan=event.feature.getProperty("pendapatan");
         console.log(myHTML);
 
 
@@ -552,7 +556,16 @@ include 'proses/pendidikan.php';
         "<h2>Info Rumah</h2>"+
         "Air Pam:"+air_pam+"<br/>"+
         "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
-        "PBB:"+pbb+"<br/>"
+        "PBB:"+pbb+"<br/>"+
+        "<table>"+
+        "<th>Nama Industri (Toko)</th><th>Kelas</th><th>Jenis</th><th>Pendapatan</th>"+
+        "<tr>"+
+        "<td>"+nama_industri+"</td>"+
+        "<td>"+jenis_kelas+"</td>"+
+        "<td>"+nama_jenis_industri+"</td>"+
+        "<td>"+pendapatan+"</td>"+
+        "</tr>"+
+        "</table>"
         
         
         
@@ -592,7 +605,78 @@ include 'proses/pendidikan.php';
 
                         layernya.setMap(map);
 
+                          layernya = new google.maps.Data();
+                        layernya.loadGeoJson('proses/get_radius_industri.php?lng='+lng+'&lat='+lat+'&radius='+value);
+
+                        layernya.setMap(map);
+
+                           
+
+                          layernya.addListener('click', function(event) {
+        
+        var myHTML = event.feature.getProperty("id_pemilik_b");
+        var nama_pemilik=event.feature.getProperty("nama_penduduk");
+        var nama_suku=event.feature.getProperty("nama_suku");
+        var no_kk=event.feature.getProperty("no_kk");
+        var tgl_lahir=event.feature.getProperty("tgl_lahir");
+        var pendidikan=event.feature.getProperty("pendidikan");
+        var penghasilan=event.feature.getProperty("penghasilan");
+        var asuransi=event.feature.getProperty("asuransi");
+        var tabungan=event.feature.getProperty("tabungan");
+        var air_pam=event.feature.getProperty("air_pam");
+        var kapasitas_listrik=event.feature.getProperty("kapasitas_listrik");
+        var pbb=event.feature.getProperty("pbb");
+        var jenis_kelas=event.feature.getProperty("jenis_kelas");
+        var nama_jenis_industri=event.feature.getProperty("nama_jenis_industri");
+        var nama_industri=event.feature.getProperty("nama_industri");
+        var pendapatan=event.feature.getProperty("pendapatan");
+        console.log(myHTML);
+
+
+
+        // alert Info
+        swal('Pemilik',
+        "Id:"+myHTML+"<br/>"+
+        "Nama Pemilik:"+nama_pemilik+
+        "<table>"+
+        "<th> Suku</th>"+
+        "<th> kk</th>"+
+        "<th> Lahir</th>"+
+        "<th> Pnddkn</th>"+
+        "<th> Income</th>"+
+        "<th> Asuransi</th>"+
+        "<th> Tabungan</th>"+
+        "<tr>"+
+        "<td>"+ nama_suku+"</td>"+"<td>"+no_kk+"</td>"+"<td>"+tgl_lahir+"</td>"+"<td>"+pendidikan+
+        "</td>"+
+        "<td>"+penghasilan+"</td>"+"<td>"+asuransi+"</td>"+"<td>"+tabungan+"</td>"+ 
+        "</tr>"+
+        "</table>"+
+        "<h2>Info Rumah</h2>"+
+        "Air Pam:"+air_pam+"<br/>"+
+        "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
+        "PBB:"+pbb+"<br/>"+
+        "<table>"+
+        "<th>Nama Industri (Toko)</th><th>Kelas</th><th>Jenis</th><th>Pendapatan</th>"+
+        "<tr>"+
+        "<td>"+nama_industri+"</td>"+
+        "<td>"+jenis_kelas+"</td>"+
+        "<td>"+nama_jenis_industri+"</td>"+
+        "<td>"+pendapatan+"</td>"+
+        "</tr>"+
+        "</table>"
+        
+        
+        
+        )
+
+        });  
+
                             }
+
+
+
+
                             function make_circle()
                             {
                                 if(circle_radius==undefined)
@@ -699,16 +783,18 @@ include 'proses/pendidikan.php';
 
                               function make_circle_b_berisi()
                             {
+                                console.log("Test");
                                 if(circle_radius==undefined)
                                 {
+                                
 
                                 var value=parseInt(document.getElementById("range_rumah_berisi").value);
                                 // console.log(value);
                                 var lat = marker_user.getPosition().lat();
                                 var lng = marker_user.getPosition().lng();
                                 var position=marker_user.getPosition();
-                                // console.log(lat);
-                                // console.log(lng);
+                                console.log(lat);
+                                console.log(lng);
                                 circle_radius = new google.maps.Circle({
                                      strokeColor: '#FF0000',
                                      strokeOpacity: 0.8,
@@ -870,52 +956,54 @@ include 'proses/pendidikan.php';
                 results = layernya.loadGeoJson('proses/bangunan.php');
                 layernya.setMap(map);
 
-                layernya.addListener('click', function(event) {
-        
-                var myHTML = event.feature.getProperty("id_pemilik_b");
-                var nama_pemilik=event.feature.getProperty("nama_penduduk");
-                var nama_suku=event.feature.getProperty("nama_suku");
-                var no_kk=event.feature.getProperty("no_kk");
-                var tgl_lahir=event.feature.getProperty("tgl_lahir");
-                var pendidikan=event.feature.getProperty("pendidikan");
-                var penghasilan=event.feature.getProperty("penghasilan");
-                var asuransi=event.feature.getProperty("asuransi");
-                var tabungan=event.feature.getProperty("tabungan");
-                var air_pam=event.feature.getProperty("air_pam");
-                var kapasitas_listrik=event.feature.getProperty("kapasitas_listrik");
-                var pbb=event.feature.getProperty("pbb");
-                console.log(myHTML);
+                layernya.addListener('click', function (event) {
 
-  
+                    var myHTML = event.feature.getProperty("id_pemilik_b");
+                    var nama_pemilik = event.feature.getProperty("nama_penduduk");
+                    var nama_suku = event.feature.getProperty("nama_suku");
+                    var no_kk = event.feature.getProperty("no_kk");
+                    var tgl_lahir = event.feature.getProperty("tgl_lahir");
+                    var pendidikan = event.feature.getProperty("pendidikan");
+                    var penghasilan = event.feature.getProperty("penghasilan");
+                    var asuransi = event.feature.getProperty("asuransi");
+                    var tabungan = event.feature.getProperty("tabungan");
+                    var air_pam = event.feature.getProperty("air_pam");
+                    var kapasitas_listrik = event.feature.getProperty("kapasitas_listrik");
+                    var pbb = event.feature.getProperty("pbb");
+                    console.log(myHTML);
 
-                // alert Info
-                swal('Pemilik',
-                "Id:"+myHTML+"<br/>"+
-                "Nama Pemilik:"+nama_pemilik+
-                "<table>"+
-                "<th> Suku</th>"+
-                "<th> kk</th>"+
-                "<th> Lahir</th>"+
-                "<th> Pnddkn</th>"+
-                "<th> Income</th>"+
-                "<th> Asuransi</th>"+
-                "<th> Tabungan</th>"+
-                "<tr>"+
-                "<td>"+ nama_suku+"</td>"+"<td>"+no_kk+"</td>"+"<td>"+tgl_lahir+"</td>"+"<td>"+pendidikan+
-                "</td>"+
-                "<td>"+penghasilan+"</td>"+"<td>"+asuransi+"</td>"+"<td>"+tabungan+"</td>"+ 
-                "</tr>"+
-                "</table>"+
-                "<h2>Info Rumah</h2>"+
-                "Air Pam:"+air_pam+"<br/>"+
-                "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
-                "PBB:"+pbb+"<br/>"
-                
-                
-                
-                )
 
-                });  
+
+                    // alert Info
+                    swal('Pemilik',
+                        "Id:" + myHTML + "<br/>" +
+                        "Nama Pemilik:" + nama_pemilik +
+                        "<table>" +
+                        "<th> Suku</th>" +
+                        "<th> kk</th>" +
+                        "<th> Lahir</th>" +
+                        "<th> Pnddkn</th>" +
+                        "<th> Income</th>" +
+                        "<th> Asuransi</th>" +
+                        "<th> Tabungan</th>" +
+                        "<tr>" +
+                        "<td>" + nama_suku + "</td>" + "<td>" + no_kk + "</td>" + "<td>" + tgl_lahir +
+                        "</td>" + "<td>" + pendidikan +
+                        "</td>" +
+                        "<td>" + penghasilan + "</td>" + "<td>" + asuransi + "</td>" + "<td>" + tabungan +
+                        "</td>" +
+                        "</tr>" +
+                        "</table>" +
+                        "<h2>Info Rumah</h2>" +
+                        "Air Pam:" + air_pam + "<br/>" +
+                        "Kapasitas Listrik:" + kapasitas_listrik + "<br/>" +
+                        "PBB:" + pbb + "<br/>"
+
+
+
+                    )
+
+                });
 
             }
 
