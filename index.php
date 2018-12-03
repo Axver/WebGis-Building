@@ -501,6 +501,8 @@ include 'proses/pendidikan.php';
 
                                   }
 
+                                  
+
 
                                });
 
@@ -509,6 +511,59 @@ include 'proses/pendidikan.php';
 
                         layernya.setMap(map);
 
+                           
+
+                          layernya.addListener('click', function(event) {
+        
+        var myHTML = event.feature.getProperty("id_pemilik_b");
+        var nama_pemilik=event.feature.getProperty("nama_penduduk");
+        var nama_suku=event.feature.getProperty("nama_suku");
+        var no_kk=event.feature.getProperty("no_kk");
+        var tgl_lahir=event.feature.getProperty("tgl_lahir");
+        var pendidikan=event.feature.getProperty("pendidikan");
+        var penghasilan=event.feature.getProperty("penghasilan");
+        var asuransi=event.feature.getProperty("asuransi");
+        var tabungan=event.feature.getProperty("tabungan");
+        var air_pam=event.feature.getProperty("air_pam");
+        var kapasitas_listrik=event.feature.getProperty("kapasitas_listrik");
+        var pbb=event.feature.getProperty("pbb");
+        console.log(myHTML);
+
+
+
+        // alert Info
+        swal('Pemilik',
+        "Id:"+myHTML+"<br/>"+
+        "Nama Pemilik:"+nama_pemilik+
+        "<table>"+
+        "<th> Suku</th>"+
+        "<th> kk</th>"+
+        "<th> Lahir</th>"+
+        "<th> Pnddkn</th>"+
+        "<th> Income</th>"+
+        "<th> Asuransi</th>"+
+        "<th> Tabungan</th>"+
+        "<tr>"+
+        "<td>"+ nama_suku+"</td>"+"<td>"+no_kk+"</td>"+"<td>"+tgl_lahir+"</td>"+"<td>"+pendidikan+
+        "</td>"+
+        "<td>"+penghasilan+"</td>"+"<td>"+asuransi+"</td>"+"<td>"+tabungan+"</td>"+ 
+        "</tr>"+
+        "</table>"+
+        "<h2>Info Rumah</h2>"+
+        "Air Pam:"+air_pam+"<br/>"+
+        "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
+        "PBB:"+pbb+"<br/>"
+        
+        
+        
+        )
+
+        });  
+
+                        
+
+                           
+                           
                             }
 
 
