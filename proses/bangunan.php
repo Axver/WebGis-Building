@@ -1,7 +1,7 @@
 <?php
 include("connect.php");
 $sql = "select suku.*,penduduk.nama as nama_penduduk,penduduk.* ,bangunan.kapasitas_listrik as kapasitas_listrik, bangunan.pbb as pbb,ST_asgeojson(geom) AS geometry,ST_X(ST_centroid(geom)) as x,ST_Y(ST_Centroid(geom)) as y,St_AsGEoJSON(ST_Centroid(geom)) as center, gid_bangunan,air_pam,bangunan.id_pemilik_b FROM bangunan
-INNER JOIN pemilik_bangunan ON bangunan.id_pemilik_b=pemilik_bangunan.id_pemilik_b INNER JOIN penghuni_bangunan ON bangunan.id_penghuni_b=penghuni_bangunan.id_penghuni_b
+LEFT JOIN pemilik_bangunan ON pemilik_bangunan.id_pemilik_b=bangunan.id_pemilik_b INNER JOIN penghuni_bangunan ON bangunan.id_penghuni_b=penghuni_bangunan.id_penghuni_b
 INNER JOIN penduduk ON penduduk.id_penduduk=pemilik_bangunan.id_penduduk 
 INNER JOIN datuk ON penduduk.id_datuk=datuk.id_datuk
 INNER JOIN suku ON datuk.id_suku=suku.id_suku";
