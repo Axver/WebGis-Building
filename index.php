@@ -170,6 +170,7 @@ include 'proses/pendidikan.php';
                             layernya.loadGeoJson('proses/cari_id.php?nama=' + nama);
 
                             layernya.setMap(map);
+                            clickpolygon();
                         }
 
                         function cari_pendapatan() {
@@ -181,6 +182,7 @@ include 'proses/pendidikan.php';
                             layernya.loadGeoJson('proses/cari_pendapatan.php?nama=' + nama);
 
                             layernya.setMap(map);
+                            clickpolygon();
                         }
                    </script>
 
@@ -954,6 +956,7 @@ include 'proses/pendidikan.php';
                             layernya.loadGeoJson('proses/cari_pemilik.php?nama=' + nama);
 
                             layernya.setMap(map);
+                            clickpolygon();
 
 
                         }
@@ -968,6 +971,7 @@ include 'proses/pendidikan.php';
                             layernya.loadGeoJson('proses/cari_penghuni.php?nama=' + nama);
 
                             layernya.setMap(map);
+                            clickpolygon();
                         }
 
                         function cari_industri() {
@@ -979,6 +983,7 @@ include 'proses/pendidikan.php';
                             layernya.loadGeoJson('proses/cari_industri.php?nama=' + nama);
 
                             layernya.setMap(map);
+                            clickpolygon();
                         }
                     </script>
 
@@ -1342,6 +1347,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/rumah_suku1.php?id_suku=' + id_suku);
                 layernya.setMap(map);
+                clickpolygon();
             }
 
             function rumah_suku1() {
@@ -1354,6 +1360,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/rumah_suku1.php?id_suku=' + id_suku);
                 layernya.setMap(map);
+                clickpolygon();
             }
 
             function rumah_datuk() {
@@ -1365,6 +1372,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/rumah_datuk.php?id_datuk=' + id_datuk);
                 layernya.setMap(map);
+                clickpolygon();
             }
 
 
@@ -1377,6 +1385,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/rumah_datuk1.php?id_datuk=' + id_datuk);
                 layernya.setMap(map);
+                clickpolygon();
             }
 
 
@@ -1388,6 +1397,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/pendidikan_pemilik.php?nama_pendidikan=' + nama_pendidikan);
                 layernya.setMap(map);
+                clickpolygon();
 
             }
 
@@ -1399,6 +1409,7 @@ include 'proses/pendidikan.php';
                 layernya = new google.maps.Data();
                 layernya.loadGeoJson('proses/pendidikan_penghuni.php?nama_pendidikan=' + nama_pendidikan);
                 layernya.setMap(map);
+                clickpolygon();
 
             }
         </script>
