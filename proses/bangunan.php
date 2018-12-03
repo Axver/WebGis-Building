@@ -1,6 +1,6 @@
 <?php
 include("connect.php");
-$sql = "select penduduk.nama as nama_penduduk, ST_asgeojson(geom) AS geometry,ST_X(ST_centroid(geom)) as x,ST_Y(ST_Centroid(geom)) as y,St_AsGEoJSON(ST_Centroid(geom)) as center, gid_bangunan,air_pam,bangunan.id_pemilik_b FROM bangunan
+$sql = "select suku.*,penduduk.nama as nama_penduduk,penduduk.* ,bangunan.kapasitas_listrik as kapasitas_listrik, bangunan.pbb as pbb,ST_asgeojson(geom) AS geometry,ST_X(ST_centroid(geom)) as x,ST_Y(ST_Centroid(geom)) as y,St_AsGEoJSON(ST_Centroid(geom)) as center, gid_bangunan,air_pam,bangunan.id_pemilik_b FROM bangunan
 INNER JOIN pemilik_bangunan ON bangunan.id_pemilik_b=pemilik_bangunan.id_pemilik_b INNER JOIN penghuni_bangunan ON bangunan.id_penghuni_b=penghuni_bangunan.id_penghuni_b
 INNER JOIN penduduk ON penduduk.id_penduduk=pemilik_bangunan.id_penduduk 
 INNER JOIN datuk ON penduduk.id_datuk=datuk.id_datuk
@@ -23,7 +23,20 @@ while ($isinya = pg_fetch_assoc($result)) {
             'x' => $isinya['x'],
 			'y' => $isinya['y'],
 			'center'=>$isinya['center'],
-			'nama_penduduk'=>$isinya['nama_penduduk']
+			'nama_penduduk'=>$isinya['nama_penduduk'],
+			'nama_suku'=>$isinya['nama_suku'],
+			'no_kk'=>$isinya['no_kk'],
+			'tgl_lahir'=>$isinya['tgl_lahir'],
+			'pendidikan'=>$isinya['pendidikan'],
+			'penghasilan'=>$isinya['penghasilan'],
+			'asuransi'=>$isinya['asuransi'],
+			'tabungan'=>$isinya['tabungan'],
+			'kapasitas_listrik'=>$isinya['kapasitas_listrik'],
+			'pbb'=>$isinya['pbb']
+
+
+
+
 			)
 		);
 	array_push($hasil['features'], $features);
