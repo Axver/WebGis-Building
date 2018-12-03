@@ -429,6 +429,56 @@ include 'proses/pendidikan.php';
 
                         layernya.setMap(map);
 
+
+                          layernya.addListener('click', function(event) {
+        
+        var myHTML = event.feature.getProperty("id_pemilik_b");
+        var nama_pemilik=event.feature.getProperty("nama_penduduk");
+        var nama_suku=event.feature.getProperty("nama_suku");
+        var no_kk=event.feature.getProperty("no_kk");
+        var tgl_lahir=event.feature.getProperty("tgl_lahir");
+        var pendidikan=event.feature.getProperty("pendidikan");
+        var penghasilan=event.feature.getProperty("penghasilan");
+        var asuransi=event.feature.getProperty("asuransi");
+        var tabungan=event.feature.getProperty("tabungan");
+        var air_pam=event.feature.getProperty("air_pam");
+        var kapasitas_listrik=event.feature.getProperty("kapasitas_listrik");
+        var pbb=event.feature.getProperty("pbb");
+        console.log(myHTML);
+
+
+
+        // alert Info
+        swal('Pemilik',
+        "Id:"+myHTML+"<br/>"+
+        "Nama Pemilik:"+nama_pemilik+
+        "<table>"+
+        "<th> Suku</th>"+
+        "<th> kk</th>"+
+        "<th> Lahir</th>"+
+        "<th> Pnddkn</th>"+
+        "<th> Income</th>"+
+        "<th> Asuransi</th>"+
+        "<th> Tabungan</th>"+
+        "<tr>"+
+        "<td>"+ nama_suku+"</td>"+"<td>"+no_kk+"</td>"+"<td>"+tgl_lahir+"</td>"+"<td>"+pendidikan+
+        "</td>"+
+        "<td>"+penghasilan+"</td>"+"<td>"+asuransi+"</td>"+"<td>"+tabungan+"</td>"+ 
+        "</tr>"+
+        "</table>"+
+        "<h2>Info Rumah</h2>"+
+        "Air Pam:"+air_pam+"<br/>"+
+        "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
+        "PBB:"+pbb+"<br/>"
+        
+        
+        
+        )
+
+        });  
+
+                        
+
                             }
 
 
@@ -498,8 +548,8 @@ include 'proses/pendidikan.php';
                                 var lat = marker_user.getPosition().lat();
                                 var lng = marker_user.getPosition().lng();
                                 var position=marker_user.getPosition();
-                                // console.log(lat);
-                                // console.log(lng);
+                                console.log(lat);
+                                console.log(lng);
                                 circle_radius = new google.maps.Circle({
                                      strokeColor: '#FF0000',
                                      strokeOpacity: 0.8,
@@ -731,7 +781,7 @@ include 'proses/pendidikan.php';
         </div>
 
         <div class='container' style='background-color:black; color:white;'>
-            Saya Jesi
+            Tugas BDL 2018
         </div>
 
 
@@ -801,7 +851,7 @@ include 'proses/pendidikan.php';
                 "<td>"+penghasilan+"</td>"+"<td>"+asuransi+"</td>"+"<td>"+tabungan+"</td>"+ 
                 "</tr>"+
                 "</table>"+
-                "<h2>Imfo Rumah</h2>"+
+                "<h2>Info Rumah</h2>"+
                 "Air Pam:"+air_pam+"<br/>"+
                 "Kapasitas Listrik:"+kapasitas_listrik+"<br/>"+
                 "PBB:"+pbb+"<br/>"
