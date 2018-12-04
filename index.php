@@ -1414,7 +1414,7 @@ include 'proses/pendidikan.php';
             }
         </script>
 
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1TwYksj1uQg1V_5yPUZqwqYYtUIvidrY&callback&callback=initMap"
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNnzxae2AewMUN0Tt_fC3gN38goeLVdVE&callback=initMap"
             async defer>
         </script>
 

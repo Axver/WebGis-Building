@@ -21,7 +21,19 @@ while ($isinya = pg_fetch_assoc($result)) {
 		'type' => 'Feature',
 		'geometry' => json_decode($isinya['geometry']),
 		'properties' => array(
-			
+			'gid_bangunan' => $isinya['gid_bangunan'],
+			'air_pam' => $isinya['air_pam'],
+            'id_pemilik_b' => $isinya['id_pemilik_b'],
+			'nama_penduduk'=>$isinya['nama_penduduk'],
+			'nama_suku'=>$isinya['nama_suku'],
+			'no_kk'=>$isinya['no_kk'],
+			'tgl_lahir'=>$isinya['tgl_lahir'],
+			'pendidikan'=>$isinya['pendidikan'],
+			'penghasilan'=>$isinya['penghasilan'],
+			'asuransi'=>$isinya['asuransi'],
+			'tabungan'=>$isinya['tabungan'],
+			'kapasitas_listrik'=>$isinya['kapasitas_listrik'],
+			'pbb'=>$isinya['pbb']
 			)
 		);
 	array_push($hasil['features'], $features);
