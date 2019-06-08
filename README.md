@@ -13,3 +13,7 @@ Fitur:
 -Dsb
 
 
+Tampilan seadanya, tapi fungsi cukup lengkap wkwk
+
+![alt text](https://github.com/Axver/uas_bdl/blob/master/APP%20GIS.PNG)
+
